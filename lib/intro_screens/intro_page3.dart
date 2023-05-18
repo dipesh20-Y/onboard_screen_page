@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class IntroPage2 extends StatelessWidget {
   const IntroPage2({
@@ -37,7 +39,8 @@ class IntroPage2 extends StatelessWidget {
             style: TextStyle(
               fontSize: 20,
             ),
-            )
+            ),
+            
           ],
         ),
       ),
@@ -45,3 +48,4 @@ class IntroPage2 extends StatelessWidget {
     );
   }
 }
+

@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class IntroPage3 extends StatelessWidget {
+class IntroPage3 extends StatefulWidget {
   const IntroPage3({Key, key}) : super(key: key);
 
- 
+  @override
+  State<IntroPage3> createState() => _IntroPage3State();
+}
+
+class _IntroPage3State extends State<IntroPage3> {
+   String _permissionStatus='';
+   Future<void> _requestPermission() async {
+    PermissionStatus status = await Permission.camera.request();
+    setState(() {
+      if (status.isGranted) {
+        _permissionStatus = 'Permission granted!';
+      } else if (status.isDenied) {
+        _permissionStatus = 'Permission denied!';
+      } else if (status.isPermanentlyDenied) {
+        _permissionStatus = 'Permission permanently denied!';
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +54,7 @@ class IntroPage3 extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-             
+             ElevatedButton(onPressed: _requestPermission, child: Text('Get Permission'),),
             ],
           ),
         ),
